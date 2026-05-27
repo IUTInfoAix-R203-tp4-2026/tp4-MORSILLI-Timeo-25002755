@@ -84,7 +84,7 @@ public class App {
     m.choisir(1);
     m.choisir(3);
     m.choisir(1);
-    System.out.print(m.afficherHistorique());
+    System.out.print(m.afficher());
   }
 
   private static void demoAnimal() {

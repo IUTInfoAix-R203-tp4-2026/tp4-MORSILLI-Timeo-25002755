@@ -27,7 +27,7 @@ import java.util.Map;
 public class Menu {
 
   private static final int TAILLE_MAX_HISTORIQUE = 10;
-  private final List<String> historique = new ArrayList<>();
+  private final Historique historique = new Historique();
 
   private final Map<String, Runnable> options = new LinkedHashMap<>();
 
@@ -55,21 +55,16 @@ public class Menu {
       throw new IllegalArgumentException("Indice hors bornes : " + indice);
     }
     String titre = options.keySet().toArray(new String[0])[indice - 1];
-    historique.add(titre);
-    if (historique.size() > TAILLE_MAX_HISTORIQUE) {
-      historique.remove(0);
+    historique.enregistrer(titre);
+    if (historique.asList().size() > TAILLE_MAX_HISTORIQUE) {
+      historique.asList().removeFirst();
     }
     options.get(titre).run();
   }
 
   /// Retourne l'historique formaté (plus récent en bas, une entrée par ligne).
   public String afficherHistorique() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("--- Historique ---\n");
-    for (String h : historique) {
-      sb.append("- ").append(h).append("\n");
-    }
-    return sb.toString();
+    return historique.afficher();
   }
 
   // (décommentés lors de la génération de la version étudiante).
