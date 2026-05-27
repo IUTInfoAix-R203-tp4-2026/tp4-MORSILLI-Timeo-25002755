@@ -28,6 +28,12 @@ package fr.univ_amu.iut.exercice2;
 /// uniquement sur les constantes nommées : un pas à la fois.
 public class CalculPrix {
 
+  public static final double TAUX_TVA = 1.20;
+  public static final double MONTANT_FRAIS_PORT = 8.0;
+  public static final double SEUIL_REMISE_FIDELITE = 500.0;
+  public static final double SEUIL_FRAIS_PORT_OFFERT = 50.0;
+  public static final double TAUX_REMISE_FIDELITE = 0.95;
+
   /// Calcule le prix final d'une commande.
   ///
   /// @param montantHT montant hors taxe de la commande
@@ -35,15 +41,15 @@ public class CalculPrix {
   /// @return montant final à payer (TTC, remise éventuelle, frais de port inclus)
   public double calculerPrixFinal(double montantHT, boolean clientFidele) {
     // TVA
-    double montantTTC = montantHT * 1.20;
+    double montantTTC = montantHT * TAUX_TVA;
     // Remise fidélité au-delà du seuil
-    if (clientFidele && montantTTC > 500.0) {
-      montantTTC = montantTTC * 0.95;
+    if (clientFidele && montantTTC > SEUIL_REMISE_FIDELITE) {
+      montantTTC = montantTTC * TAUX_REMISE_FIDELITE;
     }
     // Frais de port en dessous du seuil
     double fraisPort = 0;
-    if (montantTTC < 50.0) {
-      fraisPort = 8.0;
+    if (montantTTC < SEUIL_FRAIS_PORT_OFFERT) {
+      fraisPort = MONTANT_FRAIS_PORT;
     }
     return montantTTC + fraisPort;
   }
