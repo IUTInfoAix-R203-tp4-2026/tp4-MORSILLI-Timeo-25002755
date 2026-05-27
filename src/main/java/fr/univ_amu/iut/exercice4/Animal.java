@@ -20,37 +20,28 @@ package fr.univ_amu.iut.exercice4;
 /// `faireDuBruit()`. Le switch disparaît ; la JVM s'occupe du dispatch. On garde un point d'entrée
 /// `Animal.creer(type, nom)` qui retourne la bonne sous-classe, pour les appelants qui ne
 /// connaissent que le type sous forme de String.
-public class Animal {
+public abstract class Animal {
 
   private final String nom;
-  private final String type; // "chien", "chat", "vache", "canard"
 
-  public Animal(String nom, String type) {
+  public Animal(String nom) {
     this.nom = nom;
-    this.type = type;
+  }
+
+  public static Animal creer(String type, String nom) {
+      return switch (type) {
+          case "chien" -> new Chien(nom);
+          case "chat" -> new Chat(nom);
+          case "vache" -> new Vache(nom);
+          case "canard" -> new Canard(nom);
+          default -> throw new IllegalArgumentException();
+      };
   }
 
   public String getNom() {
     return nom;
   }
 
-  public String getType() {
-    return type;
-  }
-
   // Retourne le cri de l'animal selon son type.
-  public String faireDuBruit() {
-    switch (type) {
-      case "chien":
-        return "Wouaf !";
-      case "chat":
-        return "Miaou !";
-      case "vache":
-        return "Meuh !";
-      case "canard":
-        return "Coin coin !";
-      default:
-        throw new IllegalStateException("Type inconnu : " + type);
-    }
-  }
+  public abstract String faireDuBruit();
 }
