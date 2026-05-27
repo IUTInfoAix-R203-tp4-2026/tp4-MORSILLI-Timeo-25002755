@@ -25,8 +25,6 @@ import java.util.Map;
 ///   `Historique historique` et déléguer. La **signature publique de `Menu` ne doit pas changer**
 ///   (les tests de caractérisation vérifient le comportement observable).
 public class Menu {
-
-  private static final int TAILLE_MAX_HISTORIQUE = 10;
   private final Historique historique = new Historique();
 
   private final Map<String, Runnable> options = new LinkedHashMap<>();
@@ -56,7 +54,7 @@ public class Menu {
     }
     String titre = options.keySet().toArray(new String[0])[indice - 1];
     historique.enregistrer(titre);
-    if (historique.asList().size() > TAILLE_MAX_HISTORIQUE) {
+    if (historique.asList().size() > Historique.getTailleMaxHistorique()) {
       historique.asList().removeFirst();
     }
     options.get(titre).run();
