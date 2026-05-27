@@ -28,15 +28,30 @@ public class Facture {
   /// @return montant total TTC, remise déduite le cas échéant
   public double calculerTotal(Article[] articles) {
     // somme des HT
+    double total = sommeHT(articles);
+    // TVA
+    total = appliquerTVA(total);
+    // remise au-delà du seuil
+    total = appliquerRemise(total);
+    return total;
+  }
+
+  private static double appliquerTVA(double total) {
+    total = total * TAUX_TVA;
+    return total;
+  }
+
+  private static double appliquerRemise(double total) {
+    if (total > SEUIL_REMISE) {
+      total = total * TAUX_REMISE;
+    }
+    return total;
+  }
+
+  private static double sommeHT(Article[] articles) {
     double total = 0;
     for (Article a : articles) {
       total += a.prixUnitaireHT() * a.quantite();
-    }
-    // TVA
-    total = total * TAUX_TVA;
-    // remise au-delà du seuil
-    if (total > SEUIL_REMISE) {
-      total = total * TAUX_REMISE;
     }
     return total;
   }
