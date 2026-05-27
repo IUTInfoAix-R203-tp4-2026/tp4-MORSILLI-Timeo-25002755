@@ -20,26 +20,20 @@ public class ServiceNotification {
   ///
   /// @return la représentation textuelle du mail envoyé, pour vérification en test
   public String envoyer(
-      String destinataire,
-      String expediteur,
-      String sujet,
-      String corps,
-      boolean important,
-      int priorite,
-      String[] piecesJointes) {
+      MessageEmail messageEmail) {
     StringBuilder sb = new StringBuilder();
-    if (important) {
+    if (messageEmail.important()) {
       sb.append("[IMPORTANT] ");
     }
-    sb.append("[P").append(priorite).append("] ");
-    sb.append("De: ").append(expediteur).append(", A: ").append(destinataire).append("\n");
-    sb.append("Sujet: ").append(sujet).append("\n");
-    sb.append("Corps: ").append(corps);
-    if (piecesJointes != null && piecesJointes.length > 0) {
+    sb.append("[P").append(messageEmail.priorite()).append("] ");
+    sb.append("De: ").append(messageEmail.expediteur()).append(", A: ").append(messageEmail.destinataire()).append("\n");
+    sb.append("Sujet: ").append(messageEmail.sujet()).append("\n");
+    sb.append("Corps: ").append(messageEmail.corps());
+    if (messageEmail.piecesJointes() != null && messageEmail.piecesJointes().length > 0) {
       sb.append("\nPieces jointes: ");
-      for (int i = 0; i < piecesJointes.length; i++) {
+      for (int i = 0; i < messageEmail.piecesJointes().length; i++) {
         if (i > 0) sb.append(", ");
-        sb.append(piecesJointes[i]);
+        sb.append(messageEmail.piecesJointes()[i]);
       }
     }
     return sb.toString();
