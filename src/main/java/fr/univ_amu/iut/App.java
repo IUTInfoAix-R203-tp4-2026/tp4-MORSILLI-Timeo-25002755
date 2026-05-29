@@ -97,7 +97,9 @@ public class App {
   private static void demoEmail() {
     String mail =
         new ServiceNotification()
-            .envoyer(new MessageEmail("etudiant@univ-amu.fr",
+            .envoyer(
+                new MessageEmail(
+                    "etudiant@univ-amu.fr",
                     "prof@univ-amu.fr",
                     "TP4 à rendre",
                     "Prière de rendre avant la fin de la séance",
