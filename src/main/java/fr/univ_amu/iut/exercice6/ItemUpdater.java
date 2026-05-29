@@ -1,7 +1,7 @@
 package fr.univ_amu.iut.exercice6;
 
 public abstract class ItemUpdater {
-  private final Item item;
+  public final Item item;
 
   public ItemUpdater(Item item) {
     this.item = item;
@@ -10,19 +10,19 @@ public abstract class ItemUpdater {
   public abstract void update();
 
   public void increaseQuality() {
-    item.quality++;
+    if (item.quality < 50) item.quality++;
   }
 
   public void decreaseQuality() {
-    item.quality--;
+    if (item.quality > 0) item.quality--;
   }
 
   public void decreaseSellIn() {
     item.sellIn--;
   }
 
-  public Item getItem() {
-    return item;
+  public void clearQuality() {
+    item.quality = 0;
   }
 
   public static ItemUpdater creer(Item item) {
