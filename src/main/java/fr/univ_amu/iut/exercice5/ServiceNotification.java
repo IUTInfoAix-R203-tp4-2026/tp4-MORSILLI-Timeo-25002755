@@ -19,14 +19,17 @@ public class ServiceNotification {
   /// Formate et envoie (simulation) un email.
   ///
   /// @return la représentation textuelle du mail envoyé, pour vérification en test
-  public String envoyer(
-      MessageEmail messageEmail) {
+  public String envoyer(MessageEmail messageEmail) {
     StringBuilder sb = new StringBuilder();
     if (messageEmail.important()) {
       sb.append("[IMPORTANT] ");
     }
     sb.append("[P").append(messageEmail.priorite()).append("] ");
-    sb.append("De: ").append(messageEmail.expediteur()).append(", A: ").append(messageEmail.destinataire()).append("\n");
+    sb.append("De: ")
+        .append(messageEmail.expediteur())
+        .append(", A: ")
+        .append(messageEmail.destinataire())
+        .append("\n");
     sb.append("Sujet: ").append(messageEmail.sujet()).append("\n");
     sb.append("Corps: ").append(messageEmail.corps());
     if (messageEmail.piecesJointes() != null && messageEmail.piecesJointes().length > 0) {

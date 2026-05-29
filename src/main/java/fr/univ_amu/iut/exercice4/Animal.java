@@ -29,13 +29,13 @@ public abstract class Animal {
   }
 
   public static Animal creer(String type, String nom) {
-      return switch (type) {
-          case "chien" -> new Chien(nom);
-          case "chat" -> new Chat(nom);
-          case "vache" -> new Vache(nom);
-          case "canard" -> new Canard(nom);
-          default -> throw new IllegalArgumentException();
-      };
+    return switch (type) {
+      case "chien" -> new Chien(nom);
+      case "chat" -> new Chat(nom);
+      case "vache" -> new Vache(nom);
+      case "canard" -> new Canard(nom);
+      default -> throw new IllegalArgumentException();
+    };
   }
 
   public String getNom() {
