@@ -7,12 +7,10 @@ public class BrieItem extends ItemUpdater {
 
   @Override
   public void update() {
-    if (getItem().quality < 50) increaseQuality();
+    increaseQuality();
 
     decreaseSellIn();
 
-    if (getItem().sellIn < 0 && getItem().quality < 50) {
-      increaseQuality();
-    }
+    if (item.sellIn < 0) increaseQuality();
   }
 }

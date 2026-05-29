@@ -8,10 +8,10 @@ public class NormalItem extends ItemUpdater {
 
   @Override
   public void update() {
-    if (getItem().quality > 0) decreaseQuality();
+    decreaseQuality();
 
     decreaseSellIn();
 
-    if (getItem().sellIn < 0) if (getItem().quality > 0) decreaseQuality();
+    if (item.sellIn < 0) decreaseQuality();
   }
 }
