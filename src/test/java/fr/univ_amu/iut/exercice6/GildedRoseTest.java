@@ -132,7 +132,6 @@ class GildedRoseTest {
   //  Conjured (nouvelle fonctionnalité - à activer après le refactoring)
   // =========================================================================
 
-  @Disabled
   @Test
   void un_conjured_avant_peremption_baisse_de_2() {
     Item[] items = {new Item("Conjured Mana Cake", 5, 10)};
@@ -140,7 +139,6 @@ class GildedRoseTest {
     assertThat(items[0].quality).isEqualTo(8);
   }
 
-  @Disabled
   @Test
   void un_conjured_apres_peremption_baisse_de_4() {
     Item[] items = {new Item("Conjured Mana Cake", 0, 10)};
