@@ -30,6 +30,7 @@ public abstract class ItemUpdater {
       case "Aged Brie" -> new BrieItem(item);
       case "Sulfuras, Hand of Ragnaros" -> new SulfurasItem(item);
       case "Backstage passes to a TAFKAL80ETC concert" -> new BackstageItem(item);
+      case "Conjured Mana Cake" -> new ConjuredItem(item);
       default -> new NormalItem(item);
     };
   }
